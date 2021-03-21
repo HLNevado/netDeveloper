@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BORMEDataBaseModelStoreContainer" CdmEntityContainer="BORMEDataBaseEntities">
+    <EntitySetMapping Name="AppUsers">
+      <EntityTypeMapping TypeName="BORMEDataBaseModel.AppUsers">
+        <MappingFragment StoreEntitySet="AppUsers">
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProvinceCatalog">
+      <EntityTypeMapping TypeName="BORMEDataBaseModel.ProvinceCatalog">
+        <MappingFragment StoreEntitySet="ProvinceCatalog">
+          <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
+          <ScalarProperty Name="ProvinceCode" ColumnName="ProvinceCode" />
+          <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="BORMEDataBaseModel.Companies">
+        <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="ModificationUserId" ColumnName="ModificationUserId" />
+          <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+          <ScalarProperty Name="CreationUserId" ColumnName="CreationUserId" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="ProvinceCatalogId" ColumnName="ProvinceCatalogId" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="IdCompany" ColumnName="IdCompany" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

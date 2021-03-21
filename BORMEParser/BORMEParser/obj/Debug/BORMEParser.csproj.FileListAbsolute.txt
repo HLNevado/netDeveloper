@@ -1,0 +1,17 @@
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORMEParser\bin\Debug\BORMEParser.exe.config
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORMEParser\bin\Debug\BORMEParser.exe
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORMEParser\bin\Debug\BORMEParser.pdb
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORMEParser\bin\Debug\Microsoft.VisualBasic.PowerPacks.dll
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORMEParser\bin\Debug\es\Microsoft.VisualBasic.PowerPacks.resources.dll
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORMEParser\obj\Debug\BORMEParser.csprojAssemblyReference.cache
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORMEParser\obj\Debug\BORMEParser.Properties.Resources.resources
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORMEParser\obj\Debug\BORMEParser.csproj.GenerateResource.cache
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORMEParser\obj\Debug\BORMEParser.csproj.CoreCompileInputs.cache
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORMEParser\obj\Debug\BORMEParser.csproj.CopyComplete
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORMEParser\obj\Debug\BORMEParser.exe
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORMEParser\obj\Debug\BORMEParser.pdb
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORMEParser\obj\Debug\FlatLoginWatermark.FormLogin.resources
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORMEParser\bin\Debug\BORMEDataBase.mdf
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORMEParser\bin\Debug\BORMEDataBase_log.ldf
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORMEParser\bin\Debug\BORME.Libraries.dll
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORMEParser\bin\Debug\BORME.Libraries.pdb

@@ -1,0 +1,14 @@
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\BORMEDataBase.mdf
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\BORMEDataBase_log.ldf
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\BORME.Libraries.dll
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\BORME.Libraries.pdb
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\BORME.Data.dll
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\EntityFramework.dll
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\BORME.Data.pdb
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\BORME.Data.dll.config
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\EntityFramework.xml
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\obj\Debug\BORME.Libraries.csprojAssemblyReference.cache
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\obj\Debug\BORME.Libraries.csproj.CoreCompileInputs.cache
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\obj\Debug\BORME.Libraries.csproj.CopyComplete
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\obj\Debug\BORME.Libraries.dll
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\obj\Debug\BORME.Libraries.pdb
