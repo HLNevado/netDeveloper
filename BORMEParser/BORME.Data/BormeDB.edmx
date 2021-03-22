@@ -35,10 +35,58 @@
           <Property Name="ProvinceCode" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="ProvinceName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Companies_AppUsers">
+          <End Role="AppUsers" Type="Self.AppUsers" Multiplicity="1" />
+          <End Role="Companies" Type="Self.Companies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUsers">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Companies">
+              <PropertyRef Name="CreationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Companies_AppUsers1">
+          <End Role="AppUsers" Type="Self.AppUsers" Multiplicity="0..1" />
+          <End Role="Companies" Type="Self.Companies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUsers">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Companies">
+              <PropertyRef Name="ModificationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Companies_ProvinceCatalog">
+          <End Role="ProvinceCatalog" Type="Self.ProvinceCatalog" Multiplicity="1" />
+          <End Role="Companies" Type="Self.Companies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProvinceCatalog">
+              <PropertyRef Name="IdProvince" />
+            </Principal>
+            <Dependent Role="Companies">
+              <PropertyRef Name="ProvinceCatalogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BORMEDataBaseModelStoreContainer">
           <EntitySet Name="AppUsers" EntityType="Self.AppUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProvinceCatalog" EntityType="Self.ProvinceCatalog" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Companies_AppUsers" Association="Self.FK_Companies_AppUsers">
+            <End Role="AppUsers" EntitySet="AppUsers" />
+            <End Role="Companies" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Companies_AppUsers1" Association="Self.FK_Companies_AppUsers1">
+            <End Role="AppUsers" EntitySet="AppUsers" />
+            <End Role="Companies" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Companies_ProvinceCatalog" Association="Self.FK_Companies_ProvinceCatalog">
+            <End Role="ProvinceCatalog" EntitySet="ProvinceCatalog" />
+            <End Role="Companies" EntitySet="Companies" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -53,6 +101,8 @@
           <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Pwd" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Companies" Relationship="BORMEDataBaseModel.FK_Companies_AppUsers" FromRole="AppUsers" ToRole="Companies" />
+          <NavigationProperty Name="Companies1" Relationship="BORMEDataBaseModel.FK_Companies_AppUsers1" FromRole="AppUsers" ToRole="Companies" />
         </EntityType>
         <EntityType Name="ProvinceCatalog">
           <Key>
@@ -61,11 +111,24 @@
           <Property Name="IdProvince" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProvinceCode" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ProvinceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Companies" Relationship="BORMEDataBaseModel.FK_Companies_ProvinceCatalog" FromRole="ProvinceCatalog" ToRole="Companies" />
         </EntityType>
         <EntityContainer Name="BORMEDataBaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AppUsers" EntityType="Self.AppUsers" />
           <EntitySet Name="ProvinceCatalog" EntityType="Self.ProvinceCatalog" />
           <EntitySet Name="Companies" EntityType="BORMEDataBaseModel.Companies" />
+          <AssociationSet Name="FK_Companies_AppUsers" Association="BORMEDataBaseModel.FK_Companies_AppUsers">
+            <End Role="AppUsers" EntitySet="AppUsers" />
+            <End Role="Companies" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Companies_AppUsers1" Association="BORMEDataBaseModel.FK_Companies_AppUsers1">
+            <End Role="AppUsers" EntitySet="AppUsers" />
+            <End Role="Companies" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Companies_ProvinceCatalog" Association="BORMEDataBaseModel.FK_Companies_ProvinceCatalog">
+            <End Role="ProvinceCatalog" EntitySet="ProvinceCatalog" />
+            <End Role="Companies" EntitySet="Companies" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Companies">
           <Key>
@@ -78,7 +141,46 @@
           <Property Name="CreationUserId" Type="Int32" Nullable="false" />
           <Property Name="ModificationDate" Type="DateTime" Precision="3" />
           <Property Name="ModificationUserId" Type="Int32" />
+          <NavigationProperty Name="AppUsers" Relationship="BORMEDataBaseModel.FK_Companies_AppUsers" FromRole="Companies" ToRole="AppUsers" />
+          <NavigationProperty Name="AppUsers1" Relationship="BORMEDataBaseModel.FK_Companies_AppUsers1" FromRole="Companies" ToRole="AppUsers" />
+          <NavigationProperty Name="ProvinceCatalog" Relationship="BORMEDataBaseModel.FK_Companies_ProvinceCatalog" FromRole="Companies" ToRole="ProvinceCatalog" />
         </EntityType>
+        <Association Name="FK_Companies_AppUsers">
+          <End Type="BORMEDataBaseModel.AppUsers" Role="AppUsers" Multiplicity="1" />
+          <End Type="BORMEDataBaseModel.Companies" Role="Companies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUsers">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Companies">
+              <PropertyRef Name="CreationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Companies_AppUsers1">
+          <End Type="BORMEDataBaseModel.AppUsers" Role="AppUsers" Multiplicity="0..1" />
+          <End Type="BORMEDataBaseModel.Companies" Role="Companies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUsers">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Companies">
+              <PropertyRef Name="ModificationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Companies_ProvinceCatalog">
+          <End Type="BORMEDataBaseModel.ProvinceCatalog" Role="ProvinceCatalog" Multiplicity="1" />
+          <End Type="BORMEDataBaseModel.Companies" Role="Companies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProvinceCatalog">
+              <PropertyRef Name="IdProvince" />
+            </Principal>
+            <Dependent Role="Companies">
+              <PropertyRef Name="ProvinceCatalogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

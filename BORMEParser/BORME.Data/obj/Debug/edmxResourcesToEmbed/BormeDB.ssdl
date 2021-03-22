@@ -30,9 +30,57 @@
     <Property Name="ProvinceCode" Type="varchar" MaxLength="2" Nullable="false" />
     <Property Name="ProvinceName" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <Association Name="FK_Companies_AppUsers">
+    <End Role="AppUsers" Type="Self.AppUsers" Multiplicity="1" />
+    <End Role="Companies" Type="Self.Companies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppUsers">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="Companies">
+        <PropertyRef Name="CreationUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Companies_AppUsers1">
+    <End Role="AppUsers" Type="Self.AppUsers" Multiplicity="0..1" />
+    <End Role="Companies" Type="Self.Companies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppUsers">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="Companies">
+        <PropertyRef Name="ModificationUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Companies_ProvinceCatalog">
+    <End Role="ProvinceCatalog" Type="Self.ProvinceCatalog" Multiplicity="1" />
+    <End Role="Companies" Type="Self.Companies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProvinceCatalog">
+        <PropertyRef Name="IdProvince" />
+      </Principal>
+      <Dependent Role="Companies">
+        <PropertyRef Name="ProvinceCatalogId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="BORMEDataBaseModelStoreContainer">
     <EntitySet Name="AppUsers" EntityType="Self.AppUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProvinceCatalog" EntityType="Self.ProvinceCatalog" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Companies_AppUsers" Association="Self.FK_Companies_AppUsers">
+      <End Role="AppUsers" EntitySet="AppUsers" />
+      <End Role="Companies" EntitySet="Companies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Companies_AppUsers1" Association="Self.FK_Companies_AppUsers1">
+      <End Role="AppUsers" EntitySet="AppUsers" />
+      <End Role="Companies" EntitySet="Companies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Companies_ProvinceCatalog" Association="Self.FK_Companies_ProvinceCatalog">
+      <End Role="ProvinceCatalog" EntitySet="ProvinceCatalog" />
+      <End Role="Companies" EntitySet="Companies" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

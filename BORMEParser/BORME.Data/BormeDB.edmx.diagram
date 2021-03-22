@@ -9,6 +9,9 @@
         <EntityTypeShape EntityType="BORMEDataBaseModel.ProvinceCatalog" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BORMEDataBaseModel.Companies" Width="1.5" PointX="5.125" PointY="0.75" />
         <AssociationConnector Association="BORMEDataBaseModel.ProvinceCatalogCompanies" />
+        <AssociationConnector Association="BORMEDataBaseModel.FK_Companies_AppUsers" />
+        <AssociationConnector Association="BORMEDataBaseModel.FK_Companies_AppUsers1" />
+        <AssociationConnector Association="BORMEDataBaseModel.FK_Companies_ProvinceCatalog" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

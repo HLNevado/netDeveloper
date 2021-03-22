@@ -14,10 +14,22 @@ namespace BORME.Data
     
     public partial class AppUsers
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AppUsers()
+        {
+            this.Companies = new HashSet<Companies>();
+            this.Companies1 = new HashSet<Companies>();
+        }
+    
         public int IdUser { get; set; }
         public string UserLogin { get; set; }
         public string UserName { get; set; }
         public string Pwd { get; set; }
         public bool Active { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Companies> Companies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Companies> Companies1 { get; set; }
     }
 }

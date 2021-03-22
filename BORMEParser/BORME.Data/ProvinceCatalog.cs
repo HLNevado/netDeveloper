@@ -14,8 +14,17 @@ namespace BORME.Data
     
     public partial class ProvinceCatalog
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ProvinceCatalog()
+        {
+            this.Companies = new HashSet<Companies>();
+        }
+    
         public int IdProvince { get; set; }
         public string ProvinceCode { get; set; }
         public string ProvinceName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Companies> Companies { get; set; }
     }
 }

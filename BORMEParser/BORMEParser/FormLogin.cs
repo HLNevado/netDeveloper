@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-
+using BORME.Libraries;
 namespace FlatLoginWatermark
 {
     public partial class FormLogin : Form
@@ -96,7 +96,12 @@ namespace FlatLoginWatermark
 
         private void btnlogin_Click(object sender, EventArgs e)
         {
-
+            if (!new ClsUsers().LoginUser(txtuser.Text, txtpass.Text))
+                lblErrorLogin.Visible = true;
+            else
+            {
+                // Comprobamos si existe el usuario, está activo y la pwd coincide
+            }
         }
     }
 }

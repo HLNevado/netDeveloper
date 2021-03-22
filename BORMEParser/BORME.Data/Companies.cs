@@ -21,5 +21,9 @@ namespace BORME.Data
         public int CreationUserId { get; set; }
         public Nullable<System.DateTime> ModificationDate { get; set; }
         public Nullable<int> ModificationUserId { get; set; }
+    
+        public virtual AppUsers AppUsers { get; set; }
+        public virtual AppUsers AppUsers1 { get; set; }
+        public virtual ProvinceCatalog ProvinceCatalog { get; set; }
     }
 }
