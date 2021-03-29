@@ -19,8 +19,14 @@
     <Property Name="ProvinceCatalogId" Type="int" Nullable="false" />
     <Property Name="CreationDate" Type="datetime" Nullable="false" />
     <Property Name="CreationUserId" Type="int" Nullable="false" />
-    <Property Name="ModificationDate" Type="datetime" />
-    <Property Name="ModificationUserId" Type="int" />
+    <Property Name="ProcessDateId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProcessDates">
+    <Key>
+      <PropertyRef Name="IdDate" />
+    </Key>
+    <Property Name="IdDate" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProcessDate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="ProvinceCatalog">
     <Key>
@@ -29,6 +35,20 @@
     <Property Name="IdProvince" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ProvinceCode" Type="varchar" MaxLength="2" Nullable="false" />
     <Property Name="ProvinceName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'C:\USERS\HLARA\SOURCE\REPOS\NETDEVELOPER\BORMEPARSER\BORMEPARSER\BORMEDATABASE.MDF.dbo.vw_Companies' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vw_Companies">
+    <Key>
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="ProvinceName" />
+      <PropertyRef Name="ProcessDate" />
+      <PropertyRef Name="IdProvince" />
+    </Key>
+    <Property Name="CompanyName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProvinceName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProcessDate" Type="datetime" Nullable="false" />
+    <Property Name="IdProvince" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_Companies_AppUsers">
     <End Role="AppUsers" Type="Self.AppUsers" Multiplicity="1" />
@@ -42,15 +62,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Companies_AppUsers1">
-    <End Role="AppUsers" Type="Self.AppUsers" Multiplicity="0..1" />
+  <Association Name="FK_Companies_ProcessDate">
+    <End Role="ProcessDates" Type="Self.ProcessDates" Multiplicity="1" />
     <End Role="Companies" Type="Self.Companies" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="AppUsers">
-        <PropertyRef Name="IdUser" />
+      <Principal Role="ProcessDates">
+        <PropertyRef Name="IdDate" />
       </Principal>
       <Dependent Role="Companies">
-        <PropertyRef Name="ModificationUserId" />
+        <PropertyRef Name="ProcessDateId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -69,13 +89,22 @@
   <EntityContainer Name="BORMEDataBaseModelStoreContainer">
     <EntitySet Name="AppUsers" EntityType="Self.AppUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProcessDates" EntityType="Self.ProcessDates" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProvinceCatalog" EntityType="Self.ProvinceCatalog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_Companies" EntityType="Self.vw_Companies" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_Companies].[CompanyName] AS [CompanyName], 
+    [vw_Companies].[ProvinceName] AS [ProvinceName], 
+    [vw_Companies].[ProcessDate] AS [ProcessDate], 
+    [vw_Companies].[IdProvince] AS [IdProvince]
+    FROM [dbo].[vw_Companies] AS [vw_Companies]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_Companies_AppUsers" Association="Self.FK_Companies_AppUsers">
       <End Role="AppUsers" EntitySet="AppUsers" />
       <End Role="Companies" EntitySet="Companies" />
     </AssociationSet>
-    <AssociationSet Name="FK_Companies_AppUsers1" Association="Self.FK_Companies_AppUsers1">
-      <End Role="AppUsers" EntitySet="AppUsers" />
+    <AssociationSet Name="FK_Companies_ProcessDate" Association="Self.FK_Companies_ProcessDate">
+      <End Role="ProcessDates" EntitySet="ProcessDates" />
       <End Role="Companies" EntitySet="Companies" />
     </AssociationSet>
     <AssociationSet Name="FK_Companies_ProvinceCatalog" Association="Self.FK_Companies_ProvinceCatalog">

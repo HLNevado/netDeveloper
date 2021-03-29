@@ -9,15 +9,14 @@ using System.Threading.Tasks;
 
 namespace BORME.Libraries
 {
-    public class CLSBase
+    public class ClsBase
     {
         protected BORMEDataBaseEntities context = null;
 
-        public CLSBase()
+        public ClsBase()
         {
             context = new BORMEDataBaseEntities();
-            context.Configuration.LazyLoadingEnabled = false; // para no traernos todo el árbol de entidades relacionadas
-
+            context.Configuration.LazyLoadingEnabled = false; // Para no traernos todo el árbol de entidades relacionadas
         }
     }
 }

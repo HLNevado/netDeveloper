@@ -89,19 +89,18 @@
     <Compile Include="Companies.cs">
       <DependentUpon>BormeDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProcessDates.cs">
+      <DependentUpon>BormeDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvinceCatalog.cs">
       <DependentUpon>BormeDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="vw_Companies.cs">
+      <DependentUpon>BormeDB.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BORMEDataBase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="BORMEDataBase_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>BORMEDataBase.mdf</DependentUpon>
-    </Content>
     <Content Include="BormeDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BormeDB.edmx</DependentUpon>

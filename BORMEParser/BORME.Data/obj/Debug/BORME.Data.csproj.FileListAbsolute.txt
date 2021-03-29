@@ -1,5 +1,3 @@
-C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Data\bin\Debug\BORMEDataBase.mdf
-C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Data\bin\Debug\BORMEDataBase_log.ldf
 C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Data\bin\Debug\BORME.Data.dll.config
 C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Data\bin\Debug\BORME.Data.dll
 C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Data\bin\Debug\BORME.Data.pdb

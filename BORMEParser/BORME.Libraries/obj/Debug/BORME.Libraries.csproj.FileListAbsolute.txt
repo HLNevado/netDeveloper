@@ -1,5 +1,3 @@
-C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\BORMEDataBase.mdf
-C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\BORMEDataBase_log.ldf
 C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\BORME.Libraries.dll
 C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\BORME.Libraries.pdb
 C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\BORME.Data.dll
@@ -15,3 +13,5 @@ C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\obj\Debug\B
 C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\BORME.Libraries.dll.config
 C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\Newtonsoft.Json.dll
+C:\Users\HLara\source\repos\netDeveloper\BORMEParser\BORME.Libraries\bin\Debug\Newtonsoft.Json.xml

@@ -26,7 +26,9 @@ namespace BORME.Data
         }
     
         public virtual DbSet<AppUsers> AppUsers { get; set; }
-        public virtual DbSet<ProvinceCatalog> ProvinceCatalog { get; set; }
         public virtual DbSet<Companies> Companies { get; set; }
+        public virtual DbSet<ProcessDates> ProcessDates { get; set; }
+        public virtual DbSet<ProvinceCatalog> ProvinceCatalog { get; set; }
+        public virtual DbSet<vw_Companies> vw_Companies { get; set; }
     }
 }

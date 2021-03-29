@@ -19,11 +19,10 @@ namespace BORME.Data
         public int ProvinceCatalogId { get; set; }
         public System.DateTime CreationDate { get; set; }
         public int CreationUserId { get; set; }
-        public Nullable<System.DateTime> ModificationDate { get; set; }
-        public Nullable<int> ModificationUserId { get; set; }
+        public int ProcessDateId { get; set; }
     
         public virtual AppUsers AppUsers { get; set; }
-        public virtual AppUsers AppUsers1 { get; set; }
+        public virtual ProcessDates ProcessDates { get; set; }
         public virtual ProvinceCatalog ProvinceCatalog { get; set; }
     }
 }

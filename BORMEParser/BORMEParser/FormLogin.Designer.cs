@@ -1,4 +1,4 @@
-﻿namespace FlatLoginWatermark
+﻿namespace BORMEParser
 {
     partial class FormLogin
     {

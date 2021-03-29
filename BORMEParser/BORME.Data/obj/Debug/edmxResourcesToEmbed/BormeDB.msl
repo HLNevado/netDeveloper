@@ -4,33 +4,50 @@
     <EntitySetMapping Name="AppUsers">
       <EntityTypeMapping TypeName="BORMEDataBaseModel.AppUsers">
         <MappingFragment StoreEntitySet="AppUsers">
-          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
           <ScalarProperty Name="Active" ColumnName="Active" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ProvinceCatalog">
-      <EntityTypeMapping TypeName="BORMEDataBaseModel.ProvinceCatalog">
-        <MappingFragment StoreEntitySet="ProvinceCatalog">
-          <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
-          <ScalarProperty Name="ProvinceCode" ColumnName="ProvinceCode" />
-          <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Companies">
       <EntityTypeMapping TypeName="BORMEDataBaseModel.Companies">
         <MappingFragment StoreEntitySet="Companies">
-          <ScalarProperty Name="ModificationUserId" ColumnName="ModificationUserId" />
-          <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+          <ScalarProperty Name="ProcessDateId" ColumnName="ProcessDateId" />
           <ScalarProperty Name="CreationUserId" ColumnName="CreationUserId" />
           <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
           <ScalarProperty Name="ProvinceCatalogId" ColumnName="ProvinceCatalogId" />
           <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
           <ScalarProperty Name="IdCompany" ColumnName="IdCompany" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProcessDates">
+      <EntityTypeMapping TypeName="BORMEDataBaseModel.ProcessDates">
+        <MappingFragment StoreEntitySet="ProcessDates">
+          <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
+          <ScalarProperty Name="IdDate" ColumnName="IdDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProvinceCatalog">
+      <EntityTypeMapping TypeName="BORMEDataBaseModel.ProvinceCatalog">
+        <MappingFragment StoreEntitySet="ProvinceCatalog">
+          <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+          <ScalarProperty Name="ProvinceCode" ColumnName="ProvinceCode" />
+          <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_Companies">
+      <EntityTypeMapping TypeName="BORMEDataBaseModel.vw_Companies">
+        <MappingFragment StoreEntitySet="vw_Companies">
+          <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
+          <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
+          <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

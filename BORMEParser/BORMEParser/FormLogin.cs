@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using BORME.Libraries;
-namespace FlatLoginWatermark
+using BORMEParser.Utilities;
+
+namespace BORMEParser
 {
     public partial class FormLogin : Form
     {
@@ -87,8 +83,6 @@ namespace FlatLoginWatermark
             this.WindowState = FormWindowState.Minimized;
         }
 
-
-
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -96,12 +90,19 @@ namespace FlatLoginWatermark
 
         private void btnlogin_Click(object sender, EventArgs e)
         {
-            if (!new ClsUsers().LoginUser(txtuser.Text, txtpass.Text))
+            int _exits = new ClsUsers().LoginUser(txtuser.Text, txtpass.Text);
+            if ( _exits == 0)
+            {
                 lblErrorLogin.Visible = true;
+                this.DialogResult = DialogResult.Abort;
+            }
             else
             {
-                // Comprobamos si existe el usuario, está activo y la pwd coincide
+                LoginInfo.UserId = _exits;
+                LoginInfo.UserLogon = txtuser.Text.Trim();
+                this.DialogResult = DialogResult.OK;
             }
+                
         }
     }
 }

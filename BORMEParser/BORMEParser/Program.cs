@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BORMEParser;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,10 @@ namespace FlatLoginWatermark
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormLogin());
+            FormLogin _login = new FormLogin();
+            _login.ShowDialog();
+            if (_login.DialogResult == DialogResult.OK)
+                Application.Run(new FormMain());
         }
     }
 }

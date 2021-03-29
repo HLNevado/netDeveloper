@@ -24,8 +24,14 @@
           <Property Name="ProvinceCatalogId" Type="int" Nullable="false" />
           <Property Name="CreationDate" Type="datetime" Nullable="false" />
           <Property Name="CreationUserId" Type="int" Nullable="false" />
-          <Property Name="ModificationDate" Type="datetime" />
-          <Property Name="ModificationUserId" Type="int" />
+          <Property Name="ProcessDateId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProcessDates">
+          <Key>
+            <PropertyRef Name="IdDate" />
+          </Key>
+          <Property Name="IdDate" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProcessDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="ProvinceCatalog">
           <Key>
@@ -34,6 +40,20 @@
           <Property Name="IdProvince" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProvinceCode" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="ProvinceName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'C:\USERS\HLARA\SOURCE\REPOS\NETDEVELOPER\BORMEPARSER\BORMEPARSER\BORMEDATABASE.MDF.dbo.vw_Companies' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vw_Companies">
+          <Key>
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="ProvinceName" />
+            <PropertyRef Name="ProcessDate" />
+            <PropertyRef Name="IdProvince" />
+          </Key>
+          <Property Name="CompanyName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProvinceName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProcessDate" Type="datetime" Nullable="false" />
+          <Property Name="IdProvince" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Companies_AppUsers">
           <End Role="AppUsers" Type="Self.AppUsers" Multiplicity="1" />
@@ -47,15 +67,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Companies_AppUsers1">
-          <End Role="AppUsers" Type="Self.AppUsers" Multiplicity="0..1" />
+        <Association Name="FK_Companies_ProcessDate">
+          <End Role="ProcessDates" Type="Self.ProcessDates" Multiplicity="1" />
           <End Role="Companies" Type="Self.Companies" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AppUsers">
-              <PropertyRef Name="IdUser" />
+            <Principal Role="ProcessDates">
+              <PropertyRef Name="IdDate" />
             </Principal>
             <Dependent Role="Companies">
-              <PropertyRef Name="ModificationUserId" />
+              <PropertyRef Name="ProcessDateId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -74,13 +94,22 @@
         <EntityContainer Name="BORMEDataBaseModelStoreContainer">
           <EntitySet Name="AppUsers" EntityType="Self.AppUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcessDates" EntityType="Self.ProcessDates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProvinceCatalog" EntityType="Self.ProvinceCatalog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_Companies" EntityType="Self.vw_Companies" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_Companies].[CompanyName] AS [CompanyName], 
+    [vw_Companies].[ProvinceName] AS [ProvinceName], 
+    [vw_Companies].[ProcessDate] AS [ProcessDate], 
+    [vw_Companies].[IdProvince] AS [IdProvince]
+    FROM [dbo].[vw_Companies] AS [vw_Companies]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Companies_AppUsers" Association="Self.FK_Companies_AppUsers">
             <End Role="AppUsers" EntitySet="AppUsers" />
             <End Role="Companies" EntitySet="Companies" />
           </AssociationSet>
-          <AssociationSet Name="FK_Companies_AppUsers1" Association="Self.FK_Companies_AppUsers1">
-            <End Role="AppUsers" EntitySet="AppUsers" />
+          <AssociationSet Name="FK_Companies_ProcessDate" Association="Self.FK_Companies_ProcessDate">
+            <End Role="ProcessDates" EntitySet="ProcessDates" />
             <End Role="Companies" EntitySet="Companies" />
           </AssociationSet>
           <AssociationSet Name="FK_Companies_ProvinceCatalog" Association="Self.FK_Companies_ProvinceCatalog">
@@ -92,44 +121,36 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BORMEDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AppUsers">
-          <Key>
-            <PropertyRef Name="IdUser" />
-          </Key>
-          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserLogin" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Pwd" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Active" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Companies" Relationship="BORMEDataBaseModel.FK_Companies_AppUsers" FromRole="AppUsers" ToRole="Companies" />
-          <NavigationProperty Name="Companies1" Relationship="BORMEDataBaseModel.FK_Companies_AppUsers1" FromRole="AppUsers" ToRole="Companies" />
-        </EntityType>
-        <EntityType Name="ProvinceCatalog">
-          <Key>
-            <PropertyRef Name="IdProvince" />
-          </Key>
-          <Property Name="IdProvince" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProvinceCode" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProvinceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Companies" Relationship="BORMEDataBaseModel.FK_Companies_ProvinceCatalog" FromRole="ProvinceCatalog" ToRole="Companies" />
-        </EntityType>
         <EntityContainer Name="BORMEDataBaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AppUsers" EntityType="Self.AppUsers" />
-          <EntitySet Name="ProvinceCatalog" EntityType="Self.ProvinceCatalog" />
+          <EntitySet Name="AppUsers" EntityType="BORMEDataBaseModel.AppUsers" />
           <EntitySet Name="Companies" EntityType="BORMEDataBaseModel.Companies" />
+          <EntitySet Name="ProcessDates" EntityType="BORMEDataBaseModel.ProcessDates" />
+          <EntitySet Name="ProvinceCatalog" EntityType="BORMEDataBaseModel.ProvinceCatalog" />
           <AssociationSet Name="FK_Companies_AppUsers" Association="BORMEDataBaseModel.FK_Companies_AppUsers">
             <End Role="AppUsers" EntitySet="AppUsers" />
             <End Role="Companies" EntitySet="Companies" />
           </AssociationSet>
-          <AssociationSet Name="FK_Companies_AppUsers1" Association="BORMEDataBaseModel.FK_Companies_AppUsers1">
-            <End Role="AppUsers" EntitySet="AppUsers" />
+          <AssociationSet Name="FK_Companies_ProcessDate" Association="BORMEDataBaseModel.FK_Companies_ProcessDate">
+            <End Role="ProcessDates" EntitySet="ProcessDates" />
             <End Role="Companies" EntitySet="Companies" />
           </AssociationSet>
           <AssociationSet Name="FK_Companies_ProvinceCatalog" Association="BORMEDataBaseModel.FK_Companies_ProvinceCatalog">
             <End Role="ProvinceCatalog" EntitySet="ProvinceCatalog" />
             <End Role="Companies" EntitySet="Companies" />
           </AssociationSet>
+          <EntitySet Name="vw_Companies" EntityType="BORMEDataBaseModel.vw_Companies" />
         </EntityContainer>
+        <EntityType Name="AppUsers">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Pwd" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Companies" Relationship="BORMEDataBaseModel.FK_Companies_AppUsers" FromRole="AppUsers" ToRole="Companies" />
+        </EntityType>
         <EntityType Name="Companies">
           <Key>
             <PropertyRef Name="IdCompany" />
@@ -139,11 +160,27 @@
           <Property Name="ProvinceCatalogId" Type="Int32" Nullable="false" />
           <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreationUserId" Type="Int32" Nullable="false" />
-          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
-          <Property Name="ModificationUserId" Type="Int32" />
+          <Property Name="ProcessDateId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AppUsers" Relationship="BORMEDataBaseModel.FK_Companies_AppUsers" FromRole="Companies" ToRole="AppUsers" />
-          <NavigationProperty Name="AppUsers1" Relationship="BORMEDataBaseModel.FK_Companies_AppUsers1" FromRole="Companies" ToRole="AppUsers" />
+          <NavigationProperty Name="ProcessDates" Relationship="BORMEDataBaseModel.FK_Companies_ProcessDate" FromRole="Companies" ToRole="ProcessDates" />
           <NavigationProperty Name="ProvinceCatalog" Relationship="BORMEDataBaseModel.FK_Companies_ProvinceCatalog" FromRole="Companies" ToRole="ProvinceCatalog" />
+        </EntityType>
+        <EntityType Name="ProcessDates">
+          <Key>
+            <PropertyRef Name="IdDate" />
+          </Key>
+          <Property Name="IdDate" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProcessDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Companies" Relationship="BORMEDataBaseModel.FK_Companies_ProcessDate" FromRole="ProcessDates" ToRole="Companies" />
+        </EntityType>
+        <EntityType Name="ProvinceCatalog">
+          <Key>
+            <PropertyRef Name="IdProvince" />
+          </Key>
+          <Property Name="IdProvince" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProvinceCode" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="ProvinceName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Companies" Relationship="BORMEDataBaseModel.FK_Companies_ProvinceCatalog" FromRole="ProvinceCatalog" ToRole="Companies" />
         </EntityType>
         <Association Name="FK_Companies_AppUsers">
           <End Type="BORMEDataBaseModel.AppUsers" Role="AppUsers" Multiplicity="1" />
@@ -157,15 +194,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Companies_AppUsers1">
-          <End Type="BORMEDataBaseModel.AppUsers" Role="AppUsers" Multiplicity="0..1" />
+        <Association Name="FK_Companies_ProcessDate">
+          <End Type="BORMEDataBaseModel.ProcessDates" Role="ProcessDates" Multiplicity="1" />
           <End Type="BORMEDataBaseModel.Companies" Role="Companies" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AppUsers">
-              <PropertyRef Name="IdUser" />
+            <Principal Role="ProcessDates">
+              <PropertyRef Name="IdDate" />
             </Principal>
             <Dependent Role="Companies">
-              <PropertyRef Name="ModificationUserId" />
+              <PropertyRef Name="ProcessDateId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -181,7 +218,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="vw_Companies">
+          <Key>
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="ProvinceName" />
+            <PropertyRef Name="ProcessDate" />
+            <PropertyRef Name="IdProvince" />
+          </Key>
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProvinceName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProcessDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdProvince" Type="Int32" Nullable="false" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -190,33 +239,50 @@
           <EntitySetMapping Name="AppUsers">
             <EntityTypeMapping TypeName="BORMEDataBaseModel.AppUsers">
               <MappingFragment StoreEntitySet="AppUsers">
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Pwd" ColumnName="Pwd" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProvinceCatalog">
-            <EntityTypeMapping TypeName="BORMEDataBaseModel.ProvinceCatalog">
-              <MappingFragment StoreEntitySet="ProvinceCatalog">
-                <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
-                <ScalarProperty Name="ProvinceCode" ColumnName="ProvinceCode" />
-                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Companies">
             <EntityTypeMapping TypeName="BORMEDataBaseModel.Companies">
               <MappingFragment StoreEntitySet="Companies">
-                <ScalarProperty Name="ModificationUserId" ColumnName="ModificationUserId" />
-                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="ProcessDateId" ColumnName="ProcessDateId" />
                 <ScalarProperty Name="CreationUserId" ColumnName="CreationUserId" />
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="ProvinceCatalogId" ColumnName="ProvinceCatalogId" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="IdCompany" ColumnName="IdCompany" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessDates">
+            <EntityTypeMapping TypeName="BORMEDataBaseModel.ProcessDates">
+              <MappingFragment StoreEntitySet="ProcessDates">
+                <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
+                <ScalarProperty Name="IdDate" ColumnName="IdDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProvinceCatalog">
+            <EntityTypeMapping TypeName="BORMEDataBaseModel.ProvinceCatalog">
+              <MappingFragment StoreEntitySet="ProvinceCatalog">
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="ProvinceCode" ColumnName="ProvinceCode" />
+                <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_Companies">
+            <EntityTypeMapping TypeName="BORMEDataBaseModel.vw_Companies">
+              <MappingFragment StoreEntitySet="vw_Companies">
+                <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
+                <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

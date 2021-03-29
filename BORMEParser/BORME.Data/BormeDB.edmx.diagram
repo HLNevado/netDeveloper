@@ -5,14 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6df62949bdc4446cadedf8acc970d71c" Name="Diagram1">
-        <EntityTypeShape EntityType="BORMEDataBaseModel.AppUsers" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BORMEDataBaseModel.ProvinceCatalog" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BORMEDataBaseModel.Companies" Width="1.5" PointX="5.125" PointY="0.75" />
         <AssociationConnector Association="BORMEDataBaseModel.ProvinceCatalogCompanies" />
+        <EntityTypeShape EntityType="BORMEDataBaseModel.AppUsers" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="BORMEDataBaseModel.Companies" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="BORMEDataBaseModel.ProcessDates" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="BORMEDataBaseModel.ProvinceCatalog" Width="1.5" PointX="0.75" PointY="1.5" />
         <AssociationConnector Association="BORMEDataBaseModel.FK_Companies_AppUsers" />
-        <AssociationConnector Association="BORMEDataBaseModel.FK_Companies_AppUsers1" />
+        <AssociationConnector Association="BORMEDataBaseModel.FK_Companies_ProcessDate" />
         <AssociationConnector Association="BORMEDataBaseModel.FK_Companies_ProvinceCatalog" />
-      </Diagram>
+        <EntityTypeShape EntityType="BORMEDataBaseModel.vw_Companies" Width="1.5" PointX="3.375" PointY="4.75" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
